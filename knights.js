@@ -18,19 +18,23 @@ function knightMoves ([a,b],[c,d],callback) {
             let current = q.shift();
             callback(current)
 
-            let next = [current[0] + 2, current[1] + 1]
-           
-
-            //generate new locations 
-
-            if (next[0] >= 0 && next[0] <= 7 && next[1] >= 0 && next[1] <= 7) {
-                q.push(next)
+            //generate all 8 next spots and push into an array
+            let possibleVertices = []; 
+            possibleVertices.push([current[0] + 2, current[1] + 1])
+            possibleVertices.push([current[0] + 2, current[1] - 1])
+            possibleVertices.push([current[0] + 1, current[1] + 2])
+            possibleVertices.push([current[0] + 1, current[1] - 2])
+            possibleVertices.push([current[0] - 2, current[1] + 1])
+            possibleVertices.push([current[0] - 2, current[1] - 1])
+            possibleVertices.push([current[0] - 1, current[1] + 2])
+            possibleVertices.push([current[0] - 1, current[1] - 2])
+            
+            //filter out impossible board spots iterate through array
+            for(const vertex of possibleVertices) {
+                if (vertex[0] >= 0 && vertex[0] <= 7 && vertex[1] >= 0 && vertex[1] <= 7) {
+                   q.push(vertex)
+                } 
             }
-            
-            
-            // if(current.right !==null) {
-            //     q.push(current.right)
-            // }
             
         }
 
