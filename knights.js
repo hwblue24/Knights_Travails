@@ -9,7 +9,8 @@ function knightMoves ([a,b],[c,d],callback) {
     if(typeof a !== 'number' || typeof b !== 'number'  || typeof c !== 'number' || typeof d !== 'number') {
         throw new TypeError ("not a number")
     }
-    let startVertex = [a,b]
+    let startVertex = [a,b];
+    let endVertex = [c,d];    
     if(startVertex === null) return 
     if(callback && typeof callback === "function" ) {
         let q = []; 
@@ -29,9 +30,12 @@ function knightMoves ([a,b],[c,d],callback) {
             possibleVertices.push([current[0] - 1, current[1] + 2])
             possibleVertices.push([current[0] - 1, current[1] - 2])
             
+            
             //filter out impossible board spots iterate through array
             for(const vertex of possibleVertices) {
-                if (vertex[0] >= 0 && vertex[0] <= 7 && vertex[1] >= 0 && vertex[1] <= 7) {
+                if(vertex[0] === endVertex[0] && vertex[1] === endVertex[1]) {
+                    return 
+                }else if (vertex[0] >= 0 && vertex[0] <= 7 && vertex[1] >= 0 && vertex[1] <= 7) {
                    q.push(vertex)
                 } 
             }
@@ -44,4 +48,4 @@ function knightMoves ([a,b],[c,d],callback) {
 }
 
 
-knightMoves([0,0],[2,2],([a,b]) => console.log([a,b]))
+knightMoves([3,3],[6,0],([a,b]) => console.log([a,b]))
