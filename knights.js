@@ -17,12 +17,14 @@ function knightMoves ([a,b],[c,d],callback) {
         while (q.length!==0) {
             let current = q.shift();
             callback(current)
+
+            let next = [current[0] + 2, current[1] + 1]
            
 
             //generate new locations 
 
-            if (current[0] >= 0 && current[0] <= 7 && current[1] >= 0 && current[1] <= 7) {
-                q.push([current[0] + 2, current[1] + 1])
+            if (next[0] >= 0 && next[0] <= 7 && next[1] >= 0 && next[1] <= 7) {
+                q.push(next)
             }
             
             
